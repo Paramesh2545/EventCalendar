@@ -35,6 +35,7 @@ app.get('/test', (req, res) => {
     console.log("Hit /test route!");
     res.status(200).json({ message: "Test route works!" });
   });
+  
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(`Error: ${err.message}`.red);

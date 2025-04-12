@@ -46,8 +46,8 @@ const EventModal = ({ selectedSlot, closeModal, selectedEvent }) => {
 
         try {
             const url = selectedEvent?._id 
-                ? `http://localhost:3000/api/events/${selectedEvent._id}`
-                : 'http://localhost:3000/api/events';
+                ? `https://event-calendar-a9evc5qwp-paramesh2545s-projects.vercel.app/api/events/${selectedEvent._id}`
+                : 'https://event-calendar-a9evc5qwp-paramesh2545s-projects.vercel.app/api/events';
             
             const method = selectedEvent?._id ? 'PUT' : 'POST';
 
@@ -97,7 +97,7 @@ const EventModal = ({ selectedSlot, closeModal, selectedEvent }) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/api/events/${selectedEvent._id}`, {
+            const response = await fetch(`https://event-calendar-a9evc5qwp-paramesh2545s-projects.vercel.app/api/events/${selectedEvent._id}`, {
                 method: 'DELETE',
             });
 

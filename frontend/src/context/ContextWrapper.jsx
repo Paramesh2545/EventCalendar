@@ -27,7 +27,7 @@ export default function ContextWrapper(props) {
   const fetchEvents = async () => {
     try {
       console.log("Attempting to fetch events from backend...");
-      const response = await fetch('http://localhost:3000/api/events', {
+      const response = await fetch('https://event-calendar-a9evc5qwp-paramesh2545s-projects.vercel.app/api/events', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
