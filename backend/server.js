@@ -13,9 +13,9 @@ connectDB();
 
 const app = express();
 
-// CORS configuration - more permissive for developmst
+// CORS configuration - more permissive for development
 app.use(cors({
-  origin: '*', // Allow all origins in development
+  origin: ['http://localhost:5173', 'https://event-calendar-frontend-ten.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
