@@ -28,10 +28,13 @@ app.use(express.json());
 app.use('/api/events', eventRoutes);
 
 // Test route
+// app.get('/test', (req, res) => {
+//     res.json({ message: 'Backend is running!' });
+// });
 app.get('/test', (req, res) => {
-    res.json({ message: 'Backend is running!' });
-});
-
+    console.log("Hit /test route!");
+    res.status(200).json({ message: "Test route works!" });
+  });
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(`Error: ${err.message}`.red);
@@ -42,7 +45,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-const PORT = process.env.PORT || 3000; // Changed from 5000 to 3000
+const PORT = process.env.PORT || 3000;
 
 const server = app.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold);
