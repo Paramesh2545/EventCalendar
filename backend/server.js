@@ -15,17 +15,16 @@ const app = express();
 
 // CORS configuration - more permissive for development
 app.use(cors({
-  origin: [
-    'http://localhost:5173', 
-    'https://event-calendar-frontend-ten.vercel.app',
-    'https://event-calendar-a9evc5qwp-paramesh2545s-projects.vercel.app'
-  ],
+  origin: '*', // Allow all origins
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   preflightContinue: false,
   optionsSuccessStatus: 204
 }));
+
+// Add CORS headers manually for preflight requests
+app.options('*', cors());
 
 // Middleware
 app.use(express.json());
@@ -34,13 +33,10 @@ app.use(express.json());
 app.use('/api/events', eventRoutes);
 
 // Test route
-// app.get('/test', (req, res) => {
-//     res.json({ message: 'Backend is running!' });
-// });
 app.get('/test', (req, res) => {
     console.log("Hit /test route!");
     res.status(200).json({ message: "Test route works!" });
-  });
+});
   
 // Error handling middleware
 app.use((err, req, res, next) => {

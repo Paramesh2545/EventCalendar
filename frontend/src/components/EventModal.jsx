@@ -56,6 +56,8 @@ const EventModal = ({ selectedSlot, closeModal, selectedEvent }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                mode: 'cors',
+                credentials: 'include',
                 body: JSON.stringify(calendarEvent)
             });
 
@@ -99,6 +101,8 @@ const EventModal = ({ selectedSlot, closeModal, selectedEvent }) => {
         try {
             const response = await fetch(`https://event-calendar-a9evc5qwp-paramesh2545s-projects.vercel.app/api/events/${selectedEvent._id}`, {
                 method: 'DELETE',
+                mode: 'cors',
+                credentials: 'include'
             });
 
             if (!response.ok) {

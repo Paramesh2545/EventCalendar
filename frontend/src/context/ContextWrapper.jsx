@@ -32,7 +32,9 @@ export default function ContextWrapper(props) {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-        }
+        },
+        mode: 'cors',
+        credentials: 'include'
       });
       
       if (!response.ok) {
