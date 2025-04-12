@@ -9,7 +9,10 @@ const eventRoutes = require('./routes/eventRoutes');
 dotenv.config();
 
 // Connect to database
-connectDB();
+connectDB().catch(err => {
+    console.error('Failed to connect to MongoDB:', err);
+    process.exit(1);
+});
 
 const app = express();
 
@@ -40,8 +43,16 @@ app.get('/test', (req, res) => {
   
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error(`Error: ${err.message}`.red);
-    res.status(500).json({ 
+    console.error('Error details:', {
+        message: err.message,
+        stack: err.stack,
+        path: req.path,
+        method: req.method,
+        body: req.body,
+        query: req.query
+    });
+    
+    res.status(500).json({
         success: false,
         error: 'Server Error',
         message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong!'
@@ -56,7 +67,10 @@ const server = app.listen(PORT, () => {
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
-    console.log(`Error: ${err.message}`.red);
+    console.error('Unhandled Rejection:', {
+        error: err.message,
+        stack: err.stack
+    });
     // Close server & exit process
     server.close(() => process.exit(1));
 }); 
