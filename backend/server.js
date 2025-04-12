@@ -15,10 +15,16 @@ const app = express();
 
 // CORS configuration - more permissive for development
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://event-calendar-frontend-ten.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: [
+    'http://localhost:5173', 
+    'https://event-calendar-frontend-ten.vercel.app',
+    'https://event-calendar-a9evc5qwp-paramesh2545s-projects.vercel.app'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 }));
 
 // Middleware
